@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+	{% block body %}	
+		<h1>DASHBOARD <small> Selamat Datang {{session.username}}</small></h1>
+		<a class="btn btn-success btn-medium" href="/add_article">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+			Tambahkan Artikel Baru 
+		</a>
+		<hr>
+		<table class="table table-striped">
+			<tr>
+				<th>ID Film</th>
+				<th>Tweet</th>
+				<th>Sentimen</th>
+				<th></th>
+				<th></th>
+			</tr>
+			{% for article in hasil %}
+    		<tr>
+	      		<td></td>
+	      		<td>{{article['text']}}</td>
+	      		<td>{{article['hasil']}}</td>
+    		</tr>
+    		{% endfor %}
+		</table>
+	{% endblock %}

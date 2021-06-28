@@ -1,0 +1,110 @@
+	
+		<h1 align="center">Analisis Sentimen Film Indonesia </h1>
+			<link rel="stylesheet" type="text/css" href='/static/css/styles.css'>
+			<link rel="stylesheet" type="text/css" href='/static/css/style.css'>
+	{% extends 'layout.html' %}
+
+	{% block body %}	
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.card {
+  width: 18%;
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  margin: 3px;
+  padding:10px;}
+
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+/*
+.card{
+	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	 margin: 5px;
+  padding:10px;
+}*/
+
+.container {
+  padding: 2px 16px;
+}
+      .column {
+        float: left;
+        margin-left: 20px;
+      }
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+</style>
+  <div class="row">
+    <div class="column">
+
+		<a class="btn btn-success btn-medium" style=" height:35px;width:200px" href="/tambah_film" >
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+			Tambahkan Film Baru 
+		</a>
+    </div>
+    <div class="column">
+    </div>
+		<hr>
+<!-- 		<table class="table table-striped">
+			<tr>
+				<th>No</th>
+				<th>Title</th>
+				<th>Tahun</th>
+				<th>Sentimen</th>
+			</tr>
+			{% for film in film %}
+    		<tr>
+	      		<td>{{film.id}}</td>
+	      		<td>{{film.judul}}</td>
+	      		<td>{{film.tahun}}</td>
+	      		<td>{{film.sentimen}}</td>
+	      		<td><a href="detail/{{film.id_film}}" class="btn btn-facebook" style=" height:30px;width:100px">Detail</a>
+    		</tr>
+    		{% endfor %}
+		</table> -->
+
+<!--        <div class="row" >
+  {% for film in film %}
+
+        <div class="col-sm-3" >
+            <div class="card" >
+            <a href="detail/{{film.id_film}}">
+                <div class="image">
+					<img src="/static/img/{{film.img}}" style="width:100% ;height:50%">
+                </div>
+                <div class="card-inner">
+                    <div class="header">
+                        <h2>Title</h2>
+                        <h3>Sub-Head</h3>
+                    </div>
+                    <div class="content">
+                        <p>Content area</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       {% endfor %} 
+    </div> -->
+
+  
+    <div class="row" style="margin-left: 5px; padding-bottom: 100px">
+    	
+		{% for film in film %}
+		<a href="detail/{{film.id_film}}">
+	<div class="card">
+  	<img src="/static/img/{{film.gambar}}" style="width:70%; height: 20%">
+  	    <h4 style="height: 50px;"><b>{{film.judul}} </b>({{film.tahun}})</h4><h5>(Rate : {{film.rate}})</h5>
+
+		{% if 'admin' in session.username %}
+    </a><a class="btn btn-danger" style=" height:35px;width:70px" href="hapus/{{film.id_film}}">Hapus</a>
+    {% endif %}
+</div>
+{% endfor %}
+
+</div>
+	{% endblock %}

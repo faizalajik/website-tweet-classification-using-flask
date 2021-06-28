@@ -1,0 +1,69 @@
+	
+		<h1 align="center">Analisis Sentimen Film Indonesia </h1>
+			<link rel="stylesheet" type="text/css" href='/static/css/styles.css'>
+			<link rel="stylesheet" type="text/css" href='/static/css/style.css'>
+	{% extends 'layout.html' %}
+
+	{% block body %}	
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.card {
+  width: 18%;
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  margin: 3px;
+  padding:10px;}
+
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+/*
+.card{
+	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	 margin: 5px;
+  padding:10px;
+}*/
+
+.container {
+  padding: 2px 16px;
+}
+</style>
+		<form action="http://localhost:5000/kategori", method="POST">
+		<label for="Kategori">Pilih Kategori:</label>
+		<select name="Kategori" id="Kategori">
+		<option value="Horor">Horor</option>
+		<option value="Aksi">Aksi</option>
+		<option value="Drama">Drama</option>
+		<option value="Percintaan">Percintaan</option>
+		<option value="Kejahatan">Kejahatan</option>
+		<option value="Komedi">Komedi</option>
+		<option value="Fantasi">Fantasi</option>
+		</select>
+		<br><br>
+		<input type="submit" value="Submit">
+		</form>
+		<hr>
+
+		{% if film %}
+  	
+  	<h4>Kategori Film {{kategori}} </h4>
+    <div class="row" style="margin-left: 5px; padding-bottom: 100px">
+    	
+		{% for film in film %}
+		<a href="detail/{{film.id_film}}">
+	<div class="card">
+  	<img src="/static/img/{{film.gambar}}" style="width:70%; height: 20%">
+  	    <h4 style="height: 50px;"><b>{{film.judul}} </b>({{film.tahun}})</h4><h5>(Rate : {{film.rate}})</h5>
+		{% if 'admin' in session.username %}
+    </a><a class="btn btn-danger" style=" height:35px;width:70px" href="hapus/{{film.id_film}}">Hapus</a>
+    {% endif %}
+</div>
+{% endfor %}
+    {% endif %}
+
+
+
+</div>
+	{% endblock %}

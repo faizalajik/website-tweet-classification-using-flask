@@ -1,0 +1,57 @@
+<h1 align="center">Analisis Sentimen Film Indonesia </h1>
+{% extends 'layout.html' %}
+
+<link rel="stylesheet" type="text/css" href='/static/css/styles.css'>
+{% block body %}
+<div>
+    <a class="btn btn-success btn-medium" style=" height:35px;width:200px;margin-bottom: 20px;" href="/tambah_kata/1" >
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+      Tambahkan Kata Negasi
+    </a>
+        <a class="btn btn-success btn-medium" style=" height:35px;width:250px;margin-bottom: 20px;" href="/tambah_kata/2" >
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+      Tambahkan Perbaikan Kata
+    </a>
+        <a class="btn btn-success btn-medium" style=" height:35px;width:200px;margin-bottom: 20px;" href="/tambah_kata/3" >
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+      Tambahkan Stopword
+    </a>
+<form method="POST" action="http://localhost:5000/uji_data">	 
+	<div class="form-group">
+	<label>Masukan Kalimat</label>
+	<input type="text" name="tweet" class="form-control" value="{{request.form.tweet}}">
+	</div>
+	<p><input type="submit" class="btn btn-primary" value="Submit"></p>
+</form>
+{% if request.form.tweet != null %}
+</div>
+<div class="form-group">
+	<label>Probabilitas</label>
+	{% for res in result %}
+	<input type="text" class="form-control" value="{{res}}" disabled>
+	{% endfor %}
+	<label>Hasil Prediksi</label>
+	{% for pre in prediction %}
+
+	<input type="text" class="form-control" value="{{pre}}" disabled>
+
+	{% endfor %}
+<!-- 	<label>Remove Punctuation</label>
+	<input type="text" class="form-control" value="{{hasil[2]}}" disabled>
+	<label>Remove Number</label>
+	<input type="text" class="form-control" value="{{hasil[3]}}" disabled>
+	<label>Ganti Negasi</label>
+	<input type="text" class="form-control" value="{{hasil[4]}}" disabled>
+	<label>Tokenzing</label>
+	<input type="text" class="form-control" value="{{hasil[5]}}" disabled>
+		<label>stopword</label>
+	<input type="text" class="form-control" value="{{hasil[6]}}" disabled>
+	<label>Stemming</label>
+	<input type="text" class="form-control" value="{{hasil[7]}}" disabled>
+		</div> -->
+	</div>
+
+{% endif %}
+	<!--  -->
+
+{% endblock %}

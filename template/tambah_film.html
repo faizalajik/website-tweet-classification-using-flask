@@ -1,0 +1,34 @@
+<h1 align="center">Analisis Sentimen Film Indonesia </h1>
+{% extends 'layout.html' %}
+{% block body %}
+<h1>Tambah Film</h1>
+<form method="POST" action="http://localhost:5000/tambah_film" >	
+
+<!-- 	<div class="form-group">
+	<label for="myfile">Pilih File Tweet:</label>
+	<input type="file" id="myfile" name="myfile">
+	</div>
+	<div class="form-group">
+	<label for="myfile">Pilih Gambar Film:</label>
+	<input type="file" id="myphoto" name="myphoto">
+	</div> -->
+<!-- 	<div class="form-group">
+	<label>ID FIlm</label>
+	<input type="number" name="id" class="form-control" value={{request.form.id}}>
+	</div> -->
+	<div class="form-group">
+	<label>Judul Film</label>
+	<input type="text" name="judul" class="form-control" value="{{request.form.judul}}">
+	</div>
+<!-- 	<div class="form-group">
+	<label>Keterangan Film</label>
+	<input type="text" name="keterangan" class="form-control" value={{request.form.keterangan}}>
+	</div> -->
+<!-- 	<div class="form-group">
+	<label>Tahun Film</label>
+	<input type="number" name="tahun" class="form-control" value={{request.form.password}}>
+	</div> -->
+	<p><input type="submit" class="btn btn-primary" value="Submit"></p>
+
+</form>
+{% endblock %}
